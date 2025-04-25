@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-image: url('https://images.unsplash.com/photo-1612277790560-72b0a2208cd2?auto=format&fit=crop&w=1740&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: #f0f0f0;
+    }
+
+    h1 {
+        text-align: center;
+        padding: 40px 0 20px;
+        font-size: 36px;
+        color: #e50b0b;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    .dashboard {
+        max-width: 800px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 40px;
+        background-color: rgba(18, 18, 18, 0.85);
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+
+    .dashboard a {
+        display: block;
+        padding: 15px;
+        background-color: #007BFF;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 10px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .dashboard a:hover {
+        background-color: #0056b3;
+        transform: scale(1.03);
+    }
+</style>
+<h1>Welcome to the Hospital Management System</h1>
+<div class="dashboard">
+    <a href="{{ url_for('add_patient') }}">Add Patient</a>
+    <a href="{{ url_for('view_patients') }}">View Patients</a>
+    <a href="{{ url_for('add_doctor') }}">Add Doctor</a>
+    <a href="{{ url_for('view_doctors') }}">View Doctors</a>
+    <a href="{{ url_for('book_appointment') }}">Book Appointment</a>
+    <a href="{{ url_for('view_appointments') }}">View Appointments</a>
+    <a href="{{ url_for('add_bed') }}">Add Bed</a>
+    <a href="{{ url_for('view_beds') }}">View Beds</a>
+    <a href="{{ url_for('add_medicine') }}">Add Medicine</a>
+    <a href="{{ url_for('view_medicines') }}">View Medicines</a>
+    <a href="{{ url_for('payment') }}" class="btn btn-primary">Make Payment</a>
+    <a href="{{ url_for('discharge_bed') }}" class="btn btn-primary">Discharge</a>
+    <a href="{{ url_for('logout') }}" class="btn btn-primary">Log Out</a>
+</div>
+{% endblock %}

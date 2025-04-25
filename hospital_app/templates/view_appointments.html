@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  body {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  h2 {
+    color: #ffffff;
+  }
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .btn-success:hover {
+    background-color: #218838;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  th, td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: left;
+  }
+  thead {
+    background-color: #1f1f1f;
+  }
+  tbody tr:nth-child(even) {
+    background-color: #2a2a2a;
+  }
+  tbody tr:nth-child(odd) {
+    background-color: #1c1c1c;
+  }
+</style>
+  <h2>Appointments</h2>
+  <a href="{{ url_for('book_appointment') }}" class="btn btn-success">Book New Appointment</a>
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for appointment in appointments %}
+        <tr>
+          <td>{{ appointment.patient.name }}</td>
+          <td>{{ appointment.doctor.name }} - {{ appointment.doctor.specialization }}</td>
+          <td>{{ appointment.date }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .container {
+    max-width: 900px;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  .header h2 {
+    color: #2c3e50;
+    margin: 0;
+  }
+
+  .add-button {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  .add-button:hover {
+    background-color: #218838;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #34495e;
+    color: white;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .available {
+    color: green;
+    font-weight: bold;
+  }
+
+  .occupied {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+  <h2>Beds</h2>
+  <a href="{{ url_for('add_bed') }}" class="btn btn-success">Add New Bed</a>
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>Bed Number</th>
+        <th>Ward</th>
+        <th>Availability</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for bed in beds %}
+        <tr>
+          <td>{{ bed.bed_number }}</td>
+          <td>{{ bed.ward }}</td>
+          <td>{{ 'Available' if bed.is_available else 'Occupied' }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

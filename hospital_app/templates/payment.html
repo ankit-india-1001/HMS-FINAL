@@ -1,0 +1,127 @@
+<!-- templates/payment.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    <style>
+        body {
+            background-color: #513c3c;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .payment-container {
+            background-color: #1e1e2e;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background-color: #2b2b3d;
+            color: #fff;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #1e90ff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #187bcd;
+        }
+
+        #upi-image {
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        #upi-image img {
+            width: 150px;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Make a Payment</h2>
+        <form method="POST" action="{{ url_for('payment') }}">
+            <label for="name">Name:</label>
+            <input type="text" name="name" required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" name="amount" required>
+
+            <label for="method">Payment Method:</label>
+            <select name="method" id="payment-method" required>
+                <option value="">Select Payment Method</option>
+                <option value="Credit Card">Credit Card(Not Available For the moment)</option>
+                <option value="Debit Card">Debit Card(Not Available For the moment)</option>
+                <option value="Cash">Cash</option>
+                <option value="UPI">UPI</option>
+            </select>
+
+            <div id="upi-image">
+                <p>Scan this QR code to pay via UPI:</p>
+                <img src="{{ url_for('static', filename='images/QR.jpg') }}" alt="UPI QR Code">
+            </div>
+
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        const select = document.getElementById('payment-method');
+        const upiImage = document.getElementById('upi-image');
+
+        select.addEventListener('change', () => {
+            upiImage.style.display = select.value === 'UPI' ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .discharge-container {
+    max-width: 600px;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background-color: #fdfdfd;
+  }
+
+  .discharge-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+
+  .discharge-container p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    background-color: #e74c3c;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #c0392b;
+  }
+</style>
+
+<div class="discharge-container">
+  <h2>Discharge Bed</h2>
+  <p><strong>Bed Number:</strong> {{ bed.bed_number }}</p>
+  <p><strong>Ward:</strong> {{ bed.ward }}</p>
+  <p><strong>Status:</strong> {{ 'Occupied' if not bed.is_available else 'Available' }}</p>
+
+  {% if not bed.is_available %}
+    <form method="POST">
+      <button type="submit">Discharge and Mark as Available</button>
+    </form>
+  {% else %}
+    <p>This bed is already available.</p>
+  {% endif %}
+</div>
+{% endblock %}

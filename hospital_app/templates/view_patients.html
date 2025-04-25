@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1588776814546-ec7df658f4d4?auto=format&fit=crop&w=1740&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #f0f0f0;
+  }
+
+  h1 {
+      text-align: center;
+      margin-top: 40px;
+      color: #d10d0d;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+  }
+
+  .btn {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn:hover {
+      background-color: #218838;
+      transform: scale(1.05);
+  }
+
+  .table {
+      width: 90%;
+      margin: 0 auto 60px auto;
+      border-collapse: collapse;
+      background-color: rgba(0, 0, 0, 0.75);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .table th, .table td {
+      padding: 12px 20px;
+      text-align: left;
+      border-bottom: 1px solid #444;
+      color: #f0f0f0;
+  }
+
+  .table th {
+      background-color: #343a40;
+  }
+
+  .table tr:hover {
+      background-color: #1c1c1c;
+  }
+
+  .mt-3 {
+      margin-top: 30px;
+  }
+</style>
+
+  <h1>Patients</h1>
+  <a href="{{ url_for('add_patient') }}" class="btn btn-success">Add New Patient</a>
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for patient in patients %}
+        <tr>
+          <td>{{ patient.name }}</td>
+          <td>{{ patient.age }}</td>
+          <td>{{ patient.gender }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
